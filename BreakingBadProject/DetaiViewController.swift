@@ -22,12 +22,12 @@ class DetailViewController : UIViewController{
         
         self.title = "Detail ViewController"
         
+        //Check to see if image Data is valid if it's valid then load the image data if not then try again
         if let imageData = ViewController.imageData{
             detailImageView.load(url: imageData) {}
         }
         else{
-           // detailImageView.isHidden = true
-            label.text = "Error!!!!"
+            label.text = "Try Again"
             label.frame.size.width = 200
             label.frame.size.height = 200
             label.layer.position.y = self.view.frame.height / 2

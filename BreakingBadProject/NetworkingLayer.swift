@@ -15,14 +15,18 @@ import UIKit
 class NetworkingLayer{
     
     func loadData() async -> [ModelData] {
+        //Set URL request to Breaking Bad endpoint
         let request = URLRequest(url: URL(string: "https://www.breakingbadapi.com/api/characters")!)
         
         do {
+            //Do try-catch to load data asynchronously and add elements to our results arry
             let (data, _) = try await URLSession.shared.data(for: request)
             
             let results = try JSONDecoder().decode([ModelData].self, from: data)
             
             return results
+            
+            //If we come arcoss an error then print message in console
         } catch let DecodingError.dataCorrupted(context) {
                             print(context)
                         } catch let DecodingError.keyNotFound(key, context) {
