@@ -18,7 +18,7 @@
 		B503659328D4E8DD00EE7C49 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503659228D4E8DD00EE7C49 /* ModelData.swift */; };
 		B503659528D4E8F500EE7C49 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503659428D4E8F500EE7C49 /* TableViewCell.swift */; };
 		B503659D28D4E93900EE7C49 /* BreakingBadProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503659C28D4E93900EE7C49 /* BreakingBadProjectTests.swift */; };
-		B50365A628D69C7C00EE7C49 /* image-not-found.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B50365A528D69C7B00EE7C49 /* image-not-found.jpeg */; };
+		B50365A828D69E5B00EE7C49 /* image-not-found.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B50365A728D69E5B00EE7C49 /* image-not-found.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 		B503659428D4E8F500EE7C49 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B503659A28D4E93900EE7C49 /* BreakingBadProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakingBadProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503659C28D4E93900EE7C49 /* BreakingBadProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakingBadProjectTests.swift; sourceTree = "<group>"; };
-		B50365A528D69C7B00EE7C49 /* image-not-found.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "image-not-found.jpeg"; path = "../../image-not-found.jpeg"; sourceTree = "<group>"; };
+		B50365A728D69E5B00EE7C49 /* image-not-found.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-not-found.jpeg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 				B503658028D4E64A00EE7C49 /* Main.storyboard */,
 				B503658E28D4E88000EE7C49 /* NetworkingLayer.swift */,
 				B503659028D4E8AF00EE7C49 /* DetaiViewController.swift */,
-				B50365A528D69C7B00EE7C49 /* image-not-found.jpeg */,
+				B50365A728D69E5B00EE7C49 /* image-not-found.jpeg */,
 				B503658328D4E64C00EE7C49 /* Assets.xcassets */,
 				B503658528D4E64C00EE7C49 /* LaunchScreen.storyboard */,
 				B503658828D4E64C00EE7C49 /* Info.plist */,
@@ -194,8 +194,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B503658728D4E64C00EE7C49 /* LaunchScreen.storyboard in Resources */,
-				B50365A628D69C7C00EE7C49 /* image-not-found.jpeg in Resources */,
 				B503658428D4E64C00EE7C49 /* Assets.xcassets in Resources */,
+				B50365A828D69E5B00EE7C49 /* image-not-found.jpeg in Resources */,
 				B503658228D4E64A00EE7C49 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

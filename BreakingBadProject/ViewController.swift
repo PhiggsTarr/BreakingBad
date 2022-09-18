@@ -97,7 +97,6 @@ extension UIImageView {
 //        }
         let request = URLRequest(url: url)
         do {
-            //Do try-catch to load data asynchronously and add elements to our results arry
             let (data, _) = try await URLSession.shared.data(for: request)
             print(data)
             if data.count == 0 {
