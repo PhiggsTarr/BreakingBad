@@ -37,13 +37,13 @@ class TableViewCell: UITableViewCell {
             //Check to see if URL is valid before animating the activity indicator
             if let url = URL(string: data.img) {
                 activityIndicator.startAnimating()
-                cellImage.load(url:  url) {[weak self] in
-                    
-                    self?.activityIndicator.stopAnimating()
+                Task{
+                   await cellImage.load(url:  url) {[weak self] in
+                        
+                        self?.activityIndicator.stopAnimating()
+                    }
                 }
-                
             }
-            
         }
     }
     
@@ -52,5 +52,6 @@ class TableViewCell: UITableViewCell {
         super.prepareForReuse()
         name.text = ""
         nickname.text = ""
+     //  cellImage.image = nil
     }
 }

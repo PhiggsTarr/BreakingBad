@@ -62,6 +62,7 @@ class ViewController: UITableViewController{
         
         //Sets Cell Data to be equal to the data of the index of the model array
         cell.data = model[indexPath.row]
+       // print(model[indexPath.row].name, model[indexPath.row].img)
         return cell
     }
     
@@ -83,16 +84,39 @@ extension ViewController {
 
 //Extension to load imageview
 extension UIImageView {
-    func load(url: URL, completion: @escaping () -> Void) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                        completion()
-                    }
-                }
+    func load(url: URL, completion: @escaping () -> Void) async {
+//       // DispatchQueue.global().async { [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self?.image = image
+//                        completion()
+//                    }
+//                }
+//            }
+//        }
+        let request = URLRequest(url: url)
+        do {
+            //Do try-catch to load data asynchronously and add elements to our results arry
+            let (data, _) = try await URLSession.shared.data(for: request)
+            print(data)
+            if data.count == 0 {
+                self.image = #imageLiteral(resourceName: "image-not-found.jpeg")
+                completion()
+                return
             }
+            
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                self.image = image
+                completion()
+            }
+                
+            }
+            //If we come arcoss an error then print message in console
+        } catch{
+            
+            print("Error")
         }
     }
     

@@ -24,6 +24,7 @@ class NetworkingLayer{
             
             let results = try JSONDecoder().decode([ModelData].self, from: data)
             
+            
             return results
             
             //If we come arcoss an error then print message in console
