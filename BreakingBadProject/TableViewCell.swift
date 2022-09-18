@@ -37,8 +37,9 @@ class TableViewCell: UITableViewCell {
             //Check to see if URL is valid before animating the activity indicator
             if let url = URL(string: data.img) {
                 activityIndicator.startAnimating()
+                
                 Task{
-                   await cellImage.load(url:  url) {[weak self] in
+                    await cellImage.load(url:  url) {[weak self] in
                         
                         self?.activityIndicator.stopAnimating()
                     }

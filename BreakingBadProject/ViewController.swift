@@ -40,8 +40,6 @@ class ViewController: UITableViewController{
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Sets our tableView rows to the number of elements in our model array
         return model.count
@@ -52,7 +50,6 @@ class ViewController: UITableViewController{
         1
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Checks to see if TableViewCell is nil and if nil immediately return a UITableViewCell()
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell else {
@@ -62,7 +59,6 @@ class ViewController: UITableViewController{
         
         //Sets Cell Data to be equal to the data of the index of the model array
         cell.data = model[indexPath.row]
-       // print(model[indexPath.row].name, model[indexPath.row].img)
         return cell
     }
     
@@ -70,7 +66,6 @@ class ViewController: UITableViewController{
         
         //Sets the image for the row the user selected to be the imageData for the detail view
         ViewController.imageData = URL(string: model[indexPath.row].img)
-        
     }
 }
 
@@ -81,24 +76,14 @@ extension ViewController {
     }
 }
 
-
 //Extension to load imageview
 extension UIImageView {
     func load(url: URL, completion: @escaping () -> Void) async {
-//       // DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.image = image
-//                        completion()
-//                    }
-//                }
-//            }
-//        }
         let request = URLRequest(url: url)
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            print(data)
+            
+            //Check to see if data is available. If it's not then return default stock image saying "Image Not Available"
             if data.count == 0 {
                 self.image = #imageLiteral(resourceName: "image-not-found.jpeg")
                 completion()
@@ -107,11 +92,11 @@ extension UIImageView {
             
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
-                self.image = image
-                completion()
+                    self.image = image
+                    completion()
+                }
             }
-                
-            }
+            
             //If we come arcoss an error then print message in console
         } catch{
             

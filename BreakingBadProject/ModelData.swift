@@ -9,8 +9,8 @@ import Foundation
 
 //Struct created to model JSON Data we want for Breaking Bad Characters 
 struct ModelData : Codable{
-        let name: String
-        let img: String
-        let nickname: String
-    }
+    let name: String
+    let img: String
+    let nickname: String
+}
 
