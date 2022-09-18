@@ -52,6 +52,6 @@ class TableViewCell: UITableViewCell {
         super.prepareForReuse()
         name.text = ""
         nickname.text = ""
-     //  cellImage.image = nil
+        cellImage.image = nil
     }
 }

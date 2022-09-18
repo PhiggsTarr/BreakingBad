@@ -19,7 +19,7 @@ class NetworkingLayer{
         let request = URLRequest(url: URL(string: "https://www.breakingbadapi.com/api/characters")!)
         
         do {
-            //Do try-catch to load data asynchronously and add elements to our results arry
+            //Do try-catch to load data asynchronously and add elements to our results array
             let (data, _) = try await URLSession.shared.data(for: request)
             
             let results = try JSONDecoder().decode([ModelData].self, from: data)
