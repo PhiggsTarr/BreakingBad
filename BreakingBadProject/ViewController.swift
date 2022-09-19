@@ -10,11 +10,11 @@
 import UIKit
 
 class ViewController: UITableViewController{
-    
     //Creates a model array to populate with the ModelData elements once the network call is made
     var model: [ModelData] = []
     var detailViewController = DetailViewController()
     static var imageData = URL(string: "")
+    static var detailNameLabel = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +66,7 @@ class ViewController: UITableViewController{
         
         //Sets the image for the row the user selected to be the imageData for the detail view
         ViewController.imageData = URL(string: model[indexPath.row].img)
+        ViewController.detailNameLabel = model[indexPath.row].name
     }
 }
 
@@ -79,29 +80,36 @@ extension ViewController {
 //Extension to load imageview
 extension UIImageView {
     func load(url: URL, completion: @escaping () -> Void) async {
-        let request = URLRequest(url: url)
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            
-            //Check to see if data is available. If it's not then return default stock image saying "Image Not Available"
-            if data.count == 0 {
-                self.image = #imageLiteral(resourceName: "image-not-found.jpeg")
-                completion()
-                return
-            }
-            
-            if let image = UIImage(data: data) {
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: url) { data, response, error in
+            //Checking for error if HTTP timesout or throws an exception error
+            if error != nil {
                 DispatchQueue.main.async {
-                    self.image = image
+                    self.image = #imageLiteral(resourceName: "image-not-found.jpeg")
                     completion()
                 }
+                return
             }
-            
-            //If we come arcoss an error then print message in console
-        } catch{
-            
-            print("Error")
+            //Checking the response object to check the HTTP status code and set image based on the response code. If we get a response code between 200 and 299 then we have a valid HTTP response for our image and we can load our image from the network call
+            if let response = response as? HTTPURLResponse {
+                if 200...299 ~= response.statusCode {
+                    if let image = UIImage(data: data!) {
+                        DispatchQueue.main.async {
+                            self.image = image
+                            completion()
+                        }
+                    }
+                    //If our HTTP response is outside of the valid range of 200 to 299 then we load our "Photo Not Available" stock photo
+                } else {
+                    DispatchQueue.main.async {
+                        self.image = #imageLiteral(resourceName: "image-not-found.jpeg")
+                        completion()
+                    }
+                    return
+                }
+            }
         }
+        dataTask.resume()
     }
     
     //Shows the loading indicator in case user scrolls to a picture before it fully loads

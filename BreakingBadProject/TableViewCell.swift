@@ -33,7 +33,7 @@ class TableViewCell: UITableViewCell {
             //Set name and nickname text labels to be based off JSON data
             name.text = data.name
             nickname.text = data.nickname
-            
+            self.accessibilityIdentifier = data.name
             //Check to see if URL is valid before animating the activity indicator
             if let url = URL(string: data.img) {
                 activityIndicator.startAnimating()

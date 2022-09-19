@@ -13,6 +13,7 @@ import UIKit
 
 class DetailViewController : UIViewController{
     
+    @IBOutlet var labelName: UILabel!
     @IBOutlet var detailImageView: UIImageView!
     
     var label = UILabel()
@@ -23,6 +24,13 @@ class DetailViewController : UIViewController{
         self.title = "Detail ViewController"
         
         //Check to see if image Data is valid if it's valid then load the image data if not then try again
+        
+        if ViewController.detailNameLabel != "Lydia Rodarte-Quayle"{
+            labelName.text = ViewController.detailNameLabel
+        }else{
+            labelName.text = "Photo Not Available"
+        }
+        
         if let imageData = ViewController.imageData{
             Task{
                 await  detailImageView.load(url: imageData) {}
